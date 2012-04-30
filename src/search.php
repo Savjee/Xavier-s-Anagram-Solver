@@ -26,9 +26,19 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
 
+//Connect to database
+$db_host = "localhost:8889";
+$db_user = "root";
+$db_pwd = "root";
+$db_database = "anagram";
+
+if (!mysql_connect($db_host, $db_user, $db_pwd)) die("I'm sorry, there seems to be a problem with our database. Try again later.");
+if (!mysql_select_db($db_database)) die("I'm sorry, there seems to be a problem with our database. Try again later.");
+
+
 //Get the parameters
-$query = $_GET["q"];
-$lang = $_GET["lang"];
+$query = mysql_real_escape_string($_GET["q"]);
+$lang = mysql_real_escape_string($_GET["lang"]);
 
 $query = strtolower($query);
 
@@ -43,16 +53,6 @@ sort($alfa);
 
 //Putting the word back toughether
 $query = implode("", $alfa);
-
-
-//Connect to database
-$db_host = "localhost:8889";
-$db_user = "root";
-$db_pwd = "root";
-$db_database = "anagram";
-
-if (!mysql_connect($db_host, $db_user, $db_pwd)) die("I'm sorry, there seems to be a problem with our database. Try again later.");
-if (!mysql_select_db($db_database)) die("I'm sorry, there seems to be a problem with our database. Try again later.");
 
 
 $sql = mysql_query("SELECT * FROM {$lang} WHERE alfa='".$query."'");
