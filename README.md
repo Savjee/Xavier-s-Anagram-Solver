@@ -4,7 +4,7 @@ Probably the fastest anagram solver on the planet. It's written in PHP and uses 
 # Installation
 It's fairly simple to setup.
 
-1. Upload the contents of the folder Site/ to your webserver
+1. Upload the contents of the folder src/ to your webserver
 2. Create a new MySQL database
 3. Import the dbStructure.sql file into your database
 4. Edit the database settings in search.php
